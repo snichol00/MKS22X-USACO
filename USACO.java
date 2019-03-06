@@ -3,21 +3,29 @@ public class USACO{
     File text = new File("file.txt");
     Scanner inf = new Scanner(text);
     ArrayList<String> lines = new ArrayList<String>();
+
     while(inf.hasNextLine()){
           String line = inf.nextLine();
           lines.add(line);
     }
-    int r;
-    int c;
-    int n;
-    int e;
 
-    for (int idx = r + 1; idx < ArrayList.size(); idx ++){
-      input = ArrayList.get(idx);
-      cowStomp(input);
+    int[] params = lines.get(0).toCharArray();
+    int r = params[0];
+    int c = params[1];
+    int e = params[2];
+    int n = params[3];
+
+    String[][] land = new String[r][c];
+    for (int row = 1; row <= r; row++){
+      land[row - 1] = lines.get(row).split(" ");
     }
 
-    private void cowStop(int r, int c, int depth){
+    for (int idx = r + 1; idx < ArrayList.size(); idx ++){
+      String[] stomp = lines.get(idx).toCharArray();
+      cowStomp(stomp[0], stomp[1], stomp[2]);
+    }
+
+    private void cowStop(int row, int col, int depth){
       
     }
   }
