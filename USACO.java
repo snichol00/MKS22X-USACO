@@ -21,13 +21,13 @@ public class USACO{
       }
 
       int[][] stomps = new int[n][3];
-      for (int row = 0; row <= n; row++){
+      for (int row = 0; row < n; row++){
         for (int col = 0; col < 3; col++){
           stomps[row][col] = inf.nextInt();
         }
       }
 
-      for (int row = 0; row <= stomps.length; row++){
+      for (int row = 0; row < stomps.length; row++){
         for (int y = stomps[row][0]; y < 3; y++){
           for (int x = stomps[row][1]; x < 3; x++){
             lake[y][x] -= stomps[row][2];
@@ -53,5 +53,9 @@ public class USACO{
 
   public static int silver(String filename){
     return 0;
+  }
+
+  public static void main(String[] args) {
+    System.out.println(USACO.bronze("makelake.2.in"));
   }
 }
