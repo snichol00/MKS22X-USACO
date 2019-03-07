@@ -1,29 +1,29 @@
 public class USACO{
   public static int bronze(String filename){
-    File text = new File("file.txt");
-    Scanner inf = new Scanner(text);
-    ArrayList<String> lines = new ArrayList<String>();
+    try{
+      File text = new File(filename);
+      Scanner inf = new Scanner(text);
+      ArrayList<String> lines = new ArrayList<String>();
 
-    while(inf.hasNextLine()){
-          String line = inf.nextLine();
-          lines.add(line);
-    }
+      int r = inf.nextInt();
+      int c = inf.nextInt();
+      int e = inf.nextInt();
+      int n = inf.nextInt();
 
-    int[] params = lines.get(0).split(" ");
-    int r = params[0];
-    int c = params[1];
-    int e = params[2];
-    int n = params[3];
+      int[][] land = new int[r][c];
+      for (int row = 0; row < r; row++){
+        for (int col = 0; col < c; col++){
+          land[row][col] = inf.nextInt();
+        }
+      }
 
-    String[][] land = new String[r][c];
-    for (int row = 1; row <= r; row++){
-      land[row - 1] = lines.get(row).split(" ");
-    }
-
-    for (int idx = r + 1; idx < ArrayList.size(); idx ++){
-      String[] stomp = lines.get(idx).split(" ");
-      cowStomp(stomp[0], stomp[1], stomp[2]);
-    }
+      int[][] stomps = new int[n][3];
+      for (int row = 0; row <= n; row++){
+        for (int col = 0; col < 3; col++){
+          stomps[row][col] = inf.nextInt();
+        }
+        cowStomp(stomp[row][0], stomp[row][1], stomp[row][2]);
+      }
 
     private void cowStop(int row, int col, int depth){
       for (; row < row + 3; row++){
