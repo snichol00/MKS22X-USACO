@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 public class USACO{
   public static int bronze(String filename){
     try{
@@ -10,10 +13,10 @@ public class USACO{
       int e = inf.nextInt();
       int n = inf.nextInt();
 
-      int[][] land = new int[r][c];
+      int[][] lake = new int[r][c];
       for (int row = 0; row < r; row++){
         for (int col = 0; col < c; col++){
-          land[row][col] = inf.nextInt();
+          lake[row][col] = inf.nextInt();
         }
       }
 
@@ -22,7 +25,14 @@ public class USACO{
         for (int col = 0; col < 3; col++){
           stomps[row][col] = inf.nextInt();
         }
-        cowStomp(stomp[row][0], stomp[row][1], stomp[row][2], land[][]);
+      }
+
+      for (int row = 0; row <= stomps.length; row++){
+        for (int y = stomps[row][0]; y < 3; y++){
+          for (int x = stomps[row][1]; x < 3; x++){
+            lake[y][x] -= stomps[row][2];
+          }
+        }
       }
 
       //find depths
@@ -41,15 +51,7 @@ public class USACO{
     return 0;
   }
 
-  private static void cowStop(int row, int col, int depth, int[][] array){
-    for (; row < row + 3; row++){
-      for (; col < col + 3; col++){
-        land[row][col] -= depth;
-      }
-    }
-  }
-
   public static int silver(String filename){
-
+    return 0;
   }
 }
