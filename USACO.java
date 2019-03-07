@@ -26,6 +26,16 @@ public class USACO{
       }
 
       //find depths
+      int depths = 0;
+      for (int row = 0; row < r; row++){
+        for (int col = 0; col < c; col++){
+          if (e - lake[row][col] > 0){
+            depths += (e - lake[row][col]);
+          }
+        }
+      }
+
+      return depths * r * c;
     }
     catch(FileNotFoundException e){}
     return 0;
