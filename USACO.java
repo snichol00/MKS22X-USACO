@@ -27,10 +27,24 @@ public class USACO{
         }
       }
 
+      //
       for (int row = 0; row < stomps.length; row++){
-        for (int y = stomps[row][0]; y < 3; y++){
-          for (int x = stomps[row][1]; x < 3; x++){
-            lake[y][x] -= stomps[row][2];
+        int max = 0;
+        int ro = stomps[row][0];
+        int co = stomps[row][1];
+        int le = stomps[row][2];
+        for (int y = ro; y < ro + 3 && y < r; y++){
+          for (int x = co; x < co + 3 && x < c; x++){
+            if (lake[y][x] - le > max){
+              max = lake[y][x] - le;
+            }
+          }
+        }
+        for (int y = ro; y < ro + 3 && y < r; y++){
+          for (int x = co; x < co + 3 && x < c; x++){
+            if (lake[y][x] > max){
+              lake[y][x] = max;
+            }
           }
         }
       }
