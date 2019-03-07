@@ -22,18 +22,21 @@ public class USACO{
         for (int col = 0; col < 3; col++){
           stomps[row][col] = inf.nextInt();
         }
-        cowStomp(stomp[row][0], stomp[row][1], stomp[row][2]);
+        cowStomp(stomp[row][0], stomp[row][1], stomp[row][2], land[][]);
       }
 
-    private void cowStop(int row, int col, int depth){
-      for (; row < row + 3; row++){
-        for (; col < col + 3; col++){
-          land[row][col] -= depth;
-        }
+      //find depths
+    }
+    catch(FileNotFoundException e){}
+    return 0;
+  }
+
+  private static void cowStop(int row, int col, int depth, int[][] array){
+    for (; row < row + 3; row++){
+      for (; col < col + 3; col++){
+        land[row][col] -= depth;
       }
     }
-
-    int output = 0;
   }
 
   public static int silver(String filename){
