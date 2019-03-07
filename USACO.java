@@ -83,29 +83,33 @@ public class USACO{
   }
 
   public static int silver(String filename){
-    //read in file
-    File text = new File(filename);
-    Scanner inf = new Scanner(text);
-    ArrayList<String> lines = new ArrayList<String>();
+    try{
+      //read in file
+      File text = new File(filename);
+      Scanner inf = new Scanner(text);
+      ArrayList<String> lines = new ArrayList<String>();
 
-    // make variables for the params
-    int n = inf.nextInt();
-    int m = inf.nextInt();
-    int t = inf.nextInt();
+      // make variables for the params
+      int n = inf.nextInt();
+      int m = inf.nextInt();
+      int t = inf.nextInt();
 
-    // makes an array for the pasture map
-    int[][] pasture = new int[n][m];
-    for (int row = 0; row < n + 1; row++){
-      for (int col = 0; col < m + 1; col++){
-        pasture[row][col] = inf.nextInt();
+      // makes an array for the pasture map
+      int[][] pasture = new int[n][m];
+      for (int row = 0; row < n + 1; row++){
+        for (int col = 0; col < m + 1; col++){
+          pasture[row][col] = inf.nextInt();
+        }
       }
-    }
 
-    // make variables for given rows and columns
-    int r1 = inf.nextInt();
-    int c1 = inf.nextInt();
-    int r2 = inf.nextInt();
-    int c2 = inf.nextInt();
+      // make variables for given rows and columns
+      int r1 = inf.nextInt();
+      int c1 = inf.nextInt();
+      int r2 = inf.nextInt();
+      int c2 = inf.nextInt();
+    }
+    catch(FileNotFoundException e){}
+    return 0;
   }
 
   public static String toString(int[][] array){
