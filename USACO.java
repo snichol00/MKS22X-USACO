@@ -26,12 +26,12 @@ public class USACO{
           stomps[row][col] = inf.nextInt();
         }
       }
-
+      //System.out.println(toString(lake));
       //
       for (int row = 0; row < stomps.length; row++){
         int max = 0;
-        int ro = stomps[row][0];
-        int co = stomps[row][1];
+        int ro = stomps[row][0] - 1;
+        int co = stomps[row][1] - 1;
         int le = stomps[row][2];
         for (int y = ro; y < ro + 3 && y < r; y++){
           for (int x = co; x < co + 3 && x < c; x++){
@@ -47,6 +47,8 @@ public class USACO{
             }
           }
         }
+        //System.out.println(ro + " " + co + " " + le);
+        //System.out.println(toString(lake));
       }
 
       //find depths
@@ -59,7 +61,7 @@ public class USACO{
         }
       }
 
-      return depths * r * c;
+      return depths * 72 * 72;
     }
     catch(FileNotFoundException e){}
     return 0;
@@ -69,7 +71,18 @@ public class USACO{
     return 0;
   }
 
+  public static String toString(int[][] array){
+     String output = "";
+     for (int y = 0; y < array.length; y++){
+       for (int x = 0; x < array[0].length; x++){
+         output += array[y][x] + " ";
+       }
+       output += "\n";
+     }
+     return output;
+}
+
   public static void main(String[] args) {
-    System.out.println(USACO.bronze("makelake.2.in"));
+    System.out.println(USACO.bronze("makelake.2.in") + " = 102762432");
   }
 }
