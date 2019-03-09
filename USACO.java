@@ -95,10 +95,11 @@ public class USACO{
       int t = inf.nextInt();
 
       // makes an array for the pasture map
-      int[][] pasture = new int[n][m];
+      char[][] pasture = new char[n][m];
       for (int row = 0; row < n + 1; row++){
+        String line = inf.next();
         for (int col = 0; col < m + 1; col++){
-          pasture[row][col] = inf.nextInt();
+          pasture[row][col] = line.charAt(col);
         }
       }
 
