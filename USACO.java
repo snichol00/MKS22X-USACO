@@ -103,7 +103,7 @@ public class USACO{
             pasture[row][col] = -1;
           }
           else{
-            pasture[row][col] = 0;    
+            pasture[row][col] = 0;
           }
         }
       }
@@ -117,7 +117,6 @@ public class USACO{
       int row = r1;
       int col = c1;
       int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
-      int solutions = 0;
       for (int time = t; time > 0; time--){
         //loops that sets permanent
         for (int x = 0; x < n; x++){
@@ -127,18 +126,15 @@ public class USACO{
             int newC = col + moves[y][1];
             //checks to see if in bounds
             if (newR < n && newC < m && newR >= 0 && newC >= 0){
-              if (pasture[newR][newC] == 0){
+              if (pasture[newR][newC] = 0){
                 row = newR;
                 col = newC;
               }
             }
           }
-          if (time == t - 1 && row == r2 && col == c2){
-            solutions++;
-          }
         }
       }
-      return solutions;
+      return pasture[r2][c2];
     }
     catch(FileNotFoundException e){}
     return 0;
