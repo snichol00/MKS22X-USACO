@@ -108,6 +108,26 @@ public class USACO{
       int c1 = inf.nextInt();
       int r2 = inf.nextInt();
       int c2 = inf.nextInt();
+
+      int row = r1
+      int col = c1
+      int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
+      int solutions = 0;
+      for (int time = t; time > 0; time--){
+        //loops that sets permanent
+        for (int x = 0; x < r; x++){
+          //loops through possible moves
+          for (int y = 0; y < 4; y++){
+            int newR = row + moves[y][0];
+            int newC = col + moves[y][1];
+            if (pasture[newR][newC] == '.'){
+              row = newR;
+              col = newC;
+            }
+          }
+        }
+      }
+      return solutions;
     }
     catch(FileNotFoundException e){}
     return 0;
