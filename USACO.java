@@ -96,9 +96,9 @@ public class USACO{
 
       // makes an array for the pasture map
       int[][] pasture = new int[n][m];
-      for (int row = 0; row < n + 1; row++){
+      for (int row = 0; row < n; row++){
         String line = inf.next();
-        for (int col = 0; col < m + 1; col++){
+        for (int col = 0; col < m; col++){
           if (line.charAt(col) == '*'){
             pasture[row][col] = -1;
           }
@@ -114,25 +114,28 @@ public class USACO{
       int r2 = inf.nextInt() - 1;
       int c2 = inf.nextInt() - 1;
 
-      int row = r1;
-      int col = c1;
+      //make first move
+      pasture[r1][c1] = 1;
       int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
       for (int time = t; time > 0; time--){
-        //loops that sets permanent
+        int[][] tester = new int[n][m];
+        //loops through tester
         for (int x = 0; x < n; x++){
-          //loops through possible moves
-          for (int y = 0; y < 4; y++){
-            int newR = row + moves[y][0];
-            int newC = col + moves[y][1];
+          for (int y = 0; y < m; y++){
+            //loops through possible moves
+            for (int move = 0; move < 4; move++){
+              int newR = x + moves[move][0];
+              int newC = y + moves[move][1];
             //checks to see if in bounds
-            if (newR < n && newC < m && newR >= 0 && newC >= 0){
-              if (pasture[newR][newC] = 0){
-                row = newR;
-                col = newC;
+              if (newR < n && newC < m && newR >= 0 && newC >= 0){
+                if (tester[newR][newC] > 0){
+                  tester[newR][newC] += pasture[newR][newC];
+                }
               }
             }
           }
         }
+        pasture = tester;
       }
       return pasture[r2][c2];
     }
@@ -154,5 +157,10 @@ public class USACO{
   public static void main(String[] args) {
     System.out.println(USACO.bronze("makelake.2.in") + " = 102762432");
     System.out.println(USACO.bronze("makelake.4.in") + " = 753121152");
+    System.out.println(USACO.silver("ctravel.1.in") + " = 1");
+    System.out.println(USACO.silver("ctravel.2.in") + " = 74");
+    System.out.println(USACO.silver("ctravel.3.in") + " = 6435");
+    System.out.println(USACO.silver("ctravel.4.in") + " = 339246");
+    System.out.println(USACO.silver("ctravel.5.in") + " = 0");
   }
 }
