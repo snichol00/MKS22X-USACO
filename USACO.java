@@ -114,11 +114,19 @@ public class USACO{
       int r2 = inf.nextInt() - 1;
       int c2 = inf.nextInt() - 1;
 
+      //System.out.println(n + " " + m + " " + t + " " + r1 + " " + c1 + " " + r2 + " " + c2);
       //make first move
       pasture[r1][c1] = 1;
+      //System.out.println(toString(pasture));
       int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
       for (int time = t; time > 0; time--){
         int[][] tester = new int[n][m];
+        //initializes tester
+        for (int r = 0; r < n; r++){
+          for (int c = 0; c < m; c++){
+            tester[r][c] = 0;
+          }
+        }
         //loops through tester
         for (int x = 0; x < n; x++){
           for (int y = 0; y < m; y++){
@@ -128,15 +136,18 @@ public class USACO{
               int newC = y + moves[move][1];
             //checks to see if in bounds
               if (newR < n && newC < m && newR >= 0 && newC >= 0){
-                if (tester[newR][newC] > 0){
-                  tester[newR][newC] += pasture[newR][newC];
+                //if there is a move there, then add it
+                if (pasture[newR][newC] > 0){
+                  tester[x][y] += pasture[newR][newC];
                 }
               }
             }
           }
         }
         pasture = tester;
+        //System.out.println(toString(pasture));
       }
+      //System.out.println(toString(pasture));
       return pasture[r2][c2];
     }
     catch(FileNotFoundException e){}
