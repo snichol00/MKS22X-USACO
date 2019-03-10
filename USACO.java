@@ -117,7 +117,7 @@ public class USACO{
       //System.out.println(n + " " + m + " " + t + " " + r1 + " " + c1 + " " + r2 + " " + c2);
       //make first move
       pasture[r1][c1] = 1;
-      System.out.println(toString(pasture));
+      //System.out.println(toString(pasture));
       int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
       for (int time = t; time > 0; time--){
         int[][] tester = new int[n][m];
@@ -131,21 +131,21 @@ public class USACO{
         for (int x = 0; x < n; x++){
           for (int y = 0; y < m; y++){
             //loops through possible moves
-            for (int move = 0; move < 4; move++){
-              int newR = x + moves[move][0];
-              int newC = y + moves[move][1];
+  //          for (int move = 0; move < 4; move++){
+  //            int newR = x + moves[move][0];
+  //            int newC = y + moves[move][1];
             //checks to see if in bounds
-              if (newR < n && newC < m && newR >= 0 && newC >= 0){
+  //            if (newR < n && newC < m && newR >= 0 && newC >= 0){
                 //if there is a move there, then add it
-                if (pasture[newR][newC] > 0 && pasture[x][y] >= 0){
-                  tester[x][y] += pasture[newR][newC];
-                }
-              }
-            }
+    //            if (pasture[newR][newC] > 0 && pasture[x][y] >= 0){
+                  tester[x][y] = posMoves(x, y, pasture);//+= pasture[newR][newC];
+    //            }
+    //          }
+    //        }
           }
         }
         pasture = tester;
-        System.out.println(toString(pasture));
+        //System.out.println(toString(pasture));
       }
       //System.out.println(toString(pasture));
       return pasture[r2][c2];
@@ -164,4 +164,25 @@ public static String toString(int[][] array){
      }
      return output;
 }
+private static int posMoves(int r, int c, int[][] pasture) {
+    int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
+    int numMoves = 0;
+    if (pasture[r][c] < 0){
+      return -1;
+    }
+    for (int move = 0; move < 4; move++) {
+      int newR = r + moves[move][0];
+      int newC = c + moves[move][1];
+      //checks if in bounds
+      try {
+        //if new moves possible, add
+        if (pasture[newR][newC] > 0){
+          numMoves += pasture[newR][newC];
+        }
+      }
+      catch (IndexOutOfBoundsException e){}
+    }
+    return numMoves;
+}
+
 }
