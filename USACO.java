@@ -95,19 +95,24 @@ public class USACO{
       int t = inf.nextInt();
 
       // makes an array for the pasture map
-      char[][] pasture = new char[n][m];
+      int[][] pasture = new int[n][m];
       for (int row = 0; row < n + 1; row++){
         String line = inf.next();
         for (int col = 0; col < m + 1; col++){
-          pasture[row][col] = line.charAt(col);
+          if (line.charAt(col) == '*'){
+            pasture[row][col] = -1;
+          }
+          else{
+            pasture[row][col] = 0;    
+          }
         }
       }
 
       // make variables for given rows and columns
-      int r1 = inf.nextInt();
-      int c1 = inf.nextInt();
-      int r2 = inf.nextInt();
-      int c2 = inf.nextInt();
+      int r1 = inf.nextInt() - 1;
+      int c1 = inf.nextInt() - 1;
+      int r2 = inf.nextInt() - 1;
+      int c2 = inf.nextInt() - 1;
 
       int row = r1;
       int col = c1;
@@ -121,8 +126,8 @@ public class USACO{
             int newR = row + moves[y][0];
             int newC = col + moves[y][1];
             //checks to see if in bounds
-            if (newR < n && newC < m){
-              if (pasture[newR][newC] == '.'){
+            if (newR < n && newC < m && newR >= 0 && newC >= 0){
+              if (pasture[newR][newC] == 0){
                 row = newR;
                 col = newC;
               }
