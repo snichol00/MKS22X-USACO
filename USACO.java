@@ -117,14 +117,14 @@ public class USACO{
       //System.out.println(n + " " + m + " " + t + " " + r1 + " " + c1 + " " + r2 + " " + c2);
       //make first move
       pasture[r1][c1] = 1;
-      //System.out.println(toString(pasture));
+      System.out.println(toString(pasture));
       int[][] moves = {{1,0}, {0,1}, {-1,0}, {0,-1}};
       for (int time = t; time > 0; time--){
         int[][] tester = new int[n][m];
         //initializes tester
         for (int r = 0; r < n; r++){
           for (int c = 0; c < m; c++){
-            tester[r][c] = 0;
+            tester[r][c] = pasture[r][c];
           }
         }
         //loops through tester
@@ -137,7 +137,7 @@ public class USACO{
             //checks to see if in bounds
               if (newR < n && newC < m && newR >= 0 && newC >= 0){
                 //if there is a move there, then add it
-                if (pasture[newR][newC] > 0){
+                if (pasture[newR][newC] > 0 && pasture[x][y] >= 0){
                   tester[x][y] += pasture[newR][newC];
                 }
               }
@@ -145,16 +145,16 @@ public class USACO{
           }
         }
         pasture = tester;
-        //System.out.println(toString(pasture));
+        System.out.println(toString(pasture));
       }
       //System.out.println(toString(pasture));
       return pasture[r2][c2];
     }
     catch(FileNotFoundException e){}
     return 0;
-  }
+}
 
-  public static String toString(int[][] array){
+public static String toString(int[][] array){
      String output = "";
      for (int y = 0; y < array.length; y++){
        for (int x = 0; x < array[0].length; x++){
@@ -164,6 +164,4 @@ public class USACO{
      }
      return output;
 }
-
-
 }
